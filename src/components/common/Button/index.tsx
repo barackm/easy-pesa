@@ -29,8 +29,6 @@ const Button: React.FC<IButton> = props => {
     loading: loading || false,
   });
 
-  console.log(buttonStyles, 'buttonStyles');
-
   return (
     <TouchableOpacity
       onPress={() => {
@@ -57,11 +55,11 @@ const Button: React.FC<IButton> = props => {
           {loading ? (
             <ActivityIndicator
               size={iconStyles.size}
-              color={iconStyles.color}
+              color={iconStyles.color as string}
             />
           ) : typeof startIcon === 'function' ? (
             startIcon({
-              color: iconStyles.color || colors.white,
+              color: (iconStyles.color || colors.white.main) as string,
               size: iconStyles.size,
             })
           ) : (
@@ -71,7 +69,10 @@ const Button: React.FC<IButton> = props => {
       )}
       {loading ? (
         <View style={styles.iconContainer}>
-          <ActivityIndicator size={iconStyles.size} color={iconStyles.color} />
+          <ActivityIndicator
+            size={iconStyles.size}
+            color={iconStyles.color as string}
+          />
         </View>
       ) : (
         <Text
@@ -81,7 +82,7 @@ const Button: React.FC<IButton> = props => {
           numberOfLines={1}>
           {renderIconBtn
             ? renderIconBtn({
-                color: iconStyles.color || colors.white,
+                color: (iconStyles.color || colors.white) as string,
                 size: iconStyles.size,
               })
             : label || children}
@@ -91,7 +92,7 @@ const Button: React.FC<IButton> = props => {
         <View>
           {typeof endIcon === 'function'
             ? endIcon({
-                color: iconStyles.color || colors.white,
+                color: (iconStyles.color || colors.white) as string,
                 size: iconStyles.size,
               })
             : endIcon}

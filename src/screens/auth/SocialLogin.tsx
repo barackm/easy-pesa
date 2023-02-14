@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { fonts, metrics, themedColors } from '../../theme';
+import { fonts, metrics, colors } from '../../theme';
 
 interface SocialLoginProps {
   helperText?: string;
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   separatorLine: {
     flex: 1,
     height: 1,
-    backgroundColor: themedColors.light.grey[600],
+    backgroundColor: colors.grey[600],
   },
   separatorText: {
     marginHorizontal: 10,
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   separatorTextHelper: {
     ...fonts.body,
-    color: themedColors.light.text[300],
+    color: colors.text[300],
     marginVertical: metrics.moderateScale(10),
     textAlign: 'center',
     fontWeight: '500',

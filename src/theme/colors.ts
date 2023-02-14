@@ -130,80 +130,6 @@ export const colorShades = {
     50: '#DCF7E1',
   },
 };
-
-export const themedColors = {
-  light: {
-    primary: {
-      ...colorShades.blue,
-    },
-    secondary: {
-      ...colorShades.cyan,
-    },
-    background: {
-      ...colorShades.white,
-    },
-    text: {
-      ...colorShades.black,
-    },
-    error: {
-      ...colorShades.red,
-    },
-    success: {
-      ...colorShades.green,
-    },
-    warning: {
-      ...colorShades.yellow,
-    },
-    info: {
-      ...colorShades.blue,
-    },
-    grey: {
-      ...colorShades.lightGrey,
-    },
-    lightGrey: {
-      ...colorShades.lightGrey,
-    },
-    white: {
-      ...colorShades.white,
-    },
-  },
-  dark: {
-    primary: {
-      ...colorShades.blue,
-    },
-    secondary: {
-      ...colorShades.cyan,
-    },
-    background: {
-      ...colorShades.dmBlack,
-    },
-    text: {
-      ...colorShades.white,
-    },
-    error: {
-      ...colorShades.red,
-    },
-    success: {
-      ...colorShades.green,
-    },
-    warning: {
-      ...colorShades.yellow,
-    },
-    info: {
-      ...colorShades.blue,
-    },
-    grey: {
-      ...colorShades.grey,
-    },
-    lightGrey: {
-      ...colorShades.lightGrey,
-    },
-    white: {
-      ...colorShades.white,
-    },
-  },
-};
-
 export const colors = {
   primary: {
     ...colorShades.blue,
@@ -239,13 +165,6 @@ export const colors = {
     ...colorShades.white,
   },
 };
-
-export const getThemeColor = (theme: 'light' | 'dark') => {
-  return themedColors[theme];
-};
-// export the type of the themedColors as colors
-export type TColors = typeof themedColors.light;
-export type ThemeColors = keyof typeof themedColors;
 
 export const palette = {
   primary: {

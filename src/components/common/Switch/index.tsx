@@ -10,7 +10,7 @@ import Animated, {
 
 import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { ISwitch } from '../../../types/switch';
-import { colors, metrics } from '../../../theme';
+import { colors, metrics, palette } from '../../../theme';
 import { shadow } from '../../../theme/utlis';
 
 const Switch: React.FC<ISwitch> = props => {
@@ -52,7 +52,8 @@ const Switch: React.FC<ISwitch> = props => {
       [0, 22],
       [
         colors.grey.main,
-        palette[color as keyof typeof palette]?.main || colors.primary.main,
+        (palette[color as keyof typeof palette]?.main as string) ||
+          (colors.primary.main as string),
       ],
     );
     return {
@@ -88,8 +89,8 @@ const styles = StyleSheet.create({
     width: metrics.moderateScale(18),
     height: metrics.moderateScale(18),
     borderRadius: metrics.moderateScale(30),
-    backgroundColor: colors.text,
-    shadowColor: colors.text,
+    backgroundColor: colors.text.main as string,
+    shadowColor: colors.text.main,
     ...shadow,
   },
 });

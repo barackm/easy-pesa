@@ -15,7 +15,7 @@ const ButtonRoot = {
   marginVertical: metrics.moderateScale(5),
   ...shadow,
 };
-const buttonStyles = StyleSheet.create({
+const buttonStyles = StyleSheet.create<any>({
   root: ButtonRoot,
   outlined: {
     ...ButtonRoot,
@@ -23,7 +23,6 @@ const buttonStyles = StyleSheet.create({
     borderWidth: metrics.moderateScale(1.5),
     borderColor: 'transparent',
   },
-
   contained: {
     ...ButtonRoot,
   },
@@ -33,7 +32,7 @@ const buttonStyles = StyleSheet.create({
     borderWidth: 0,
   },
   label: {
-    color: colors.text,
+    color: colors.text.main,
     fontSize: metrics.moderateScale(12),
     fontWeight: fonts.subHeading.fontWeight,
     marginHorizontal: metrics.moderateScale(5),

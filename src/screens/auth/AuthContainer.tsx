@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { StatusBar } from 'react-native';
 
-import { fonts, metrics, themedColors } from '../../theme';
+import { colors, fonts, metrics } from '../../theme';
 import LoginContainer from './SignIn';
 import SignUpContainer from './SignUp';
 const statusBarHeight = StatusBar.currentHeight || 40;
@@ -19,9 +19,7 @@ interface AuthContainerProps {
   navigation: any;
 }
 
-const AuthContainer: any = (props: AuthContainerProps) => {
-  const { navigation } = props;
-  console.log(navigation);
+const AuthContainer: React.FC<AuthContainerProps> = () => {
   const [target, setTarget] = React.useState<'signin' | 'signup'>('signin');
 
   return (
@@ -93,7 +91,7 @@ export default AuthContainer;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: themedColors.light.primary.main,
+    backgroundColor: colors.primary.main,
   },
   scrollView: {
     height: '100%',
@@ -117,19 +115,19 @@ const styles = StyleSheet.create({
   },
   headerContentWrapper: {
     marginHorizontal: metrics.horizontalScale(20),
-    backgroundColor: themedColors.light.primary[400],
+    backgroundColor: colors.primary[400],
     padding: metrics.moderateScale(24),
     borderRadius: metrics.moderateScale(20),
     alignItems: 'center',
   },
   helloText: {
     ...fonts.body,
-    color: themedColors.light.white.main,
+    color: colors.white.main,
     opacity: 0.4,
   },
   welcomeText: {
     ...fonts.subHeading,
-    color: themedColors.light.white.main,
+    color: colors.white.main,
     marginVertical: metrics.moderateScale(8),
   },
   buttonOptionsWrapper: {
@@ -137,7 +135,7 @@ const styles = StyleSheet.create({
     borderRadius: metrics.moderateScale(23),
     overflow: 'hidden',
     marginTop: metrics.moderateScale(16),
-    backgroundColor: themedColors.light.primary[300],
+    backgroundColor: colors.primary[300],
     height: metrics.moderateScale(46),
   },
   buttonOption: {
@@ -151,15 +149,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   buttonOptionActive: {
-    backgroundColor: themedColors.light.white.main,
+    backgroundColor: colors.white.main,
     borderRadius: metrics.moderateScale(23),
   },
   buttonText: {
     ...fonts.body,
-    color: themedColors.light.primary[100],
+    color: colors.primary[100],
   },
   buttonTextActive: {
-    color: themedColors.light.text.main,
+    color: colors.text.main,
   },
 
   childrenWrapper: {
@@ -173,7 +171,7 @@ const styles = StyleSheet.create({
     paddingVertical: metrics.moderateScale(20),
     borderTopLeftRadius: metrics.moderateScale(20),
     borderTopRightRadius: metrics.moderateScale(20),
-    backgroundColor: themedColors.light.white.main,
+    backgroundColor: colors.white.main,
     flex: 1,
   },
 });

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { fonts, metrics, themedColors } from '../../../theme';
+import { colors, fonts, metrics } from '../../../theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   },
   headerTextSubHeading: {
     ...fonts.caption,
-    color: themedColors.light.text[200],
+    color: colors.grey.main[200],
     marginTop: metrics.moderateScale(4),
   },
   form: {
@@ -32,8 +32,10 @@ const styles = StyleSheet.create({
   },
   forgotPasswordText: {
     ...fonts.caption,
-    color: themedColors.light.primary.main,
+    color: colors.primary.main,
   },
+
+  formInputsContainer: {},
 });
 
 export default styles;

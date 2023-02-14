@@ -88,7 +88,7 @@ const TextInput: React.FC<ITextInput> = props => {
           keyboardType={keyboardType}
           secureTextEntry={shouldSecureTextEntry}
           value={value}
-          style={[styles.input, inputStyles]}
+          style={[styles.input, inputStyles as any]}
           multiline={multiline}
           numberOfLines={numberOfLines}
           editable={!disabled}
