@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     borderWidth: metrics.moderateScale(0.5),
     borderColor: colors.grey[50],
     borderRadius: metrics.moderateScale(48),
-    minHeight: metrics.moderateScale(46),
+    minHeight: metrics.verticalScale(35),
   },
   label: {
     ...fonts.medium,

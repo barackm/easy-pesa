@@ -1,5 +1,5 @@
 import { Platform, StyleSheet } from 'react-native';
-import { themedColors } from './colors';
+import { colors } from './colors';
 import { metrics } from './metrics';
 
 export const fonts = StyleSheet.create({
@@ -10,7 +10,7 @@ export const fonts = StyleSheet.create({
       ios: 'Helvetica Neue',
       android: 'Roboto',
     }),
-    color: themedColors.light.text.main,
+    color: colors.text.main,
   },
   subHeading: {
     fontSize: metrics.moderateScale(18),
@@ -19,7 +19,7 @@ export const fonts = StyleSheet.create({
       ios: 'Helvetica Neue',
       android: 'Roboto',
     }),
-    color: themedColors.light.text.main,
+    color: colors.text.main,
   },
   body: {
     fontSize: metrics.moderateScale(14),
@@ -28,7 +28,7 @@ export const fonts = StyleSheet.create({
       ios: 'Helvetica Neue',
       android: 'Roboto',
     }),
-    color: themedColors.light.text.main,
+    color: colors.text.main,
   },
   caption: {
     fontSize: metrics.moderateScale(12),
@@ -37,7 +37,7 @@ export const fonts = StyleSheet.create({
       ios: 'Helvetica Neue',
       android: 'Roboto',
     }),
-    color: themedColors.light.text.main,
+    color: colors.text.main,
   },
   defaultTextStyle: {
     fontFamily: Platform.select({

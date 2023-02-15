@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   headerTextSubHeading: {
     ...fonts.caption,
     color: colors.grey.main[200],
-    marginTop: metrics.moderateScale(4),
+    marginTop: metrics.verticalScale(10),
   },
   form: {
     marginTop: metrics.moderateScale(24),

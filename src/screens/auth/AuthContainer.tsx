@@ -13,7 +13,7 @@ import { StatusBar } from 'react-native';
 import { colors, fonts, metrics } from '../../theme';
 import LoginContainer from './SignIn';
 import SignUpContainer from './SignUp';
-const statusBarHeight = StatusBar.currentHeight || 40;
+import useDeviceStatusBar from '../../hooks/useDeviceStatusBar';
 
 interface AuthContainerProps {
   navigation: any;
@@ -21,6 +21,8 @@ interface AuthContainerProps {
 
 const AuthContainer: React.FC<AuthContainerProps> = () => {
   const [target, setTarget] = React.useState<'signin' | 'signup'>('signin');
+
+  const { statusBarHeight } = useDeviceStatusBar();
 
   return (
     <View style={styles.container}>
@@ -32,12 +34,19 @@ const AuthContainer: React.FC<AuthContainerProps> = () => {
           style={styles.scrollView}
           bounces={false}>
           <StatusBar />
-          <View style={styles.safeAreaView}>
+          <View
+            style={[
+              styles.safeAreaView,
+              {
+                paddingTop: statusBarHeight,
+              },
+            ]}>
             <View style={styles.authContentContainer}>
               <View style={styles.headerContentWrapper}>
-                <Text style={styles.helloText}>Hello, There</Text>
-                <Text style={styles.welcomeText}>Welcome back</Text>
-
+                <View style={styles.welcomeTextWrapper}>
+                  <Text style={styles.helloText}>Hello, There</Text>
+                  <Text style={styles.welcomeText}>Welcome back</Text>
+                </View>
                 <View style={styles.buttonOptionsWrapper}>
                   <TouchableOpacity
                     style={[
@@ -105,26 +114,30 @@ const styles = StyleSheet.create({
     flex: 1,
     height: metrics.screenHeight,
     justifyContent: 'center',
-    paddingTop: statusBarHeight + metrics.moderateScale(20),
   },
   authContentContainer: {
     flex: 1,
     alignItems: 'center',
     height: '100%',
-    // paddingTop: metrics.moderateScale(15),
   },
+
   headerContentWrapper: {
     marginHorizontal: metrics.horizontalScale(20),
     backgroundColor: colors.primary[400],
-    padding: metrics.moderateScale(24),
+    padding: metrics.verticalScale(20),
     borderRadius: metrics.moderateScale(20),
     alignItems: 'center',
+    height: '20%',
   },
   helloText: {
     ...fonts.body,
     color: colors.white.main,
     opacity: 0.4,
   },
+  welcomeTextWrapper: {
+    height: '50%',
+  },
+
   welcomeText: {
     ...fonts.subHeading,
     color: colors.white.main,
@@ -136,7 +149,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginTop: metrics.moderateScale(16),
     backgroundColor: colors.primary[300],
-    height: metrics.moderateScale(46),
+    height: '40%',
   },
   buttonOption: {
     flex: 1,
@@ -144,7 +157,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: metrics.moderateScale(8),
     display: 'flex',
     alignItems: 'center',
-    height: metrics.moderateScale(46),
+    height: '100%',
     justifyContent: 'center',
     flexDirection: 'row',
   },
@@ -162,8 +175,8 @@ const styles = StyleSheet.create({
 
   childrenWrapper: {
     marginTop: metrics.moderateScale(24),
-    flex: 1,
     width: '100%',
+    height: '80%',
   },
 
   authContent: {

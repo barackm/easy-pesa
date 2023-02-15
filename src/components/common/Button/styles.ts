@@ -4,10 +4,10 @@ import { shadow } from '../../../theme/utlis';
 
 const ButtonRoot = {
   borderRadius: metrics.moderateScale(48),
-  paddingHorizontal: metrics.moderateScale(8),
+  paddingHorizontal: metrics.horizontalScale(8),
   display: 'flex',
   alignItems: 'center',
-  height: metrics.moderateScale(46),
+  height: metrics.verticalScale(38),
   justifyContent: 'center',
   flexDirection: 'row',
   color: colors.text,

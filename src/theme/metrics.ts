@@ -1,21 +1,26 @@
 import { Dimensions, StyleSheet } from 'react-native';
+import { moderateScale, verticalScale, scale } from 'react-native-size-matters';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
-const scale = screenWidth / 360;
+
+const horizontalScale = (size: number) => {
+  const standardWidth = 360; // standard width
+  const ratio = size / standardWidth; // get ratio based on standard width
+  return scale(screenWidth * ratio); // scale size based on current screen width
+};
 
 export const metrics = {
   screenWidth,
   screenHeight,
-  navBarHeight: 64,
-  tabBarHeight: 48,
-  baseMargin: 16,
-  doubleBaseMargin: 32,
-  smallMargin: 8,
-  doubleSection: 128,
+  navBarHeight: verticalScale(64),
+  tabBarHeight: verticalScale(48),
+  baseMargin: scale(16),
+  doubleBaseMargin: scale(32),
+  smallMargin: scale(8),
+  doubleSection: verticalScale(128),
   horizontalLineHeight: StyleSheet.hairlineWidth,
+  verticalScale,
+  moderateScale,
   scale,
-  verticalScale: (size: number) => size * scale,
-  horizontalScale: (size: number) => size * scale,
-  moderateScale: (size: number, factor = 0.8) =>
-    screenWidth / screenHeight > 1.6 ? size * factor : size,
+  horizontalScale,
 };
