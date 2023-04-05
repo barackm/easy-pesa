@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import React from 'react';
 
-import Text from '@/SystemDesign/Text/Index';
+import Text from '@/SystemDesign/Components/Text/Index';
 import { TextVariant } from '@/hooks/styles/useTextStyles';
 import { metrics } from '@/styles';
 import LeftContent from './LeftContent';

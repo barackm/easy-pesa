@@ -21,7 +21,7 @@ const Card: React.FC<CardProps> = props => {
     },
     container: {
       width: '100%',
-      backgroundColor: colors.white,
+      backgroundColor: colors.backgrounds.card,
       borderRadius: metrics.moderateScale(14),
       padding: isNotAList ? metrics.moderateScale(15) : 0,
       marginVertical: metrics.moderateScale(10),
@@ -32,7 +32,10 @@ const Card: React.FC<CardProps> = props => {
   return (
     <AnimatedButton disabled={!onPress} onPress={() => onPress && onPress()}>
       <View style={styles.mainContainer}>
-        <ApplyShadow backgroundColor={colors.white}>
+        <ApplyShadow
+          backgroundColor={colors.white}
+          shadowOpacity={0.055}
+          shadowRadius={15}>
           <View style={styles.container}>{children}</View>
         </ApplyShadow>
       </View>

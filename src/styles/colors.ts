@@ -70,6 +70,7 @@ const darkModeColors = {
     card: globalColors.dark,
     cardBackdrop: globalColors.darker,
     swap: globalColors.swapPurple,
+    appBackground: globalColors.darker,
   },
 };
 
@@ -169,6 +170,8 @@ const getColorsByTheme = (isDarkMode?: boolean) => {
       card: globalColors.white,
       cardBackdrop: globalColors.offwhite,
       swap: globalColors.swapPurple,
+      // darken the white background for the app
+      appBackground: chroma(globalColors.white).darken(0.2).hex(),
     },
   };
 

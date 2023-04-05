@@ -2,7 +2,7 @@ import AnimatedButton from '@/Components/AnimatedButton/AnimatedButton';
 import ApplyShadow from '@/Components/ApplyShadow/Index';
 import { useButtonStyles } from '@/hooks/styles/useButtonStyles';
 import { TextVariant } from '@/hooks/styles/useTextStyles';
-import Text from '@/SystemDesign/Text/Index';
+import Text from '@/SystemDesign/Components/Text/Index';
 import { useTheme } from '@/theme/ThemeContext';
 import React from 'react';
 import {

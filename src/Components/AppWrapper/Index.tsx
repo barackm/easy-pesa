@@ -14,7 +14,7 @@ const AppWrapper: React.FC<AppWrapperProps> = props => {
       style={[
         styles.container,
         {
-          backgroundColor: colors.backgrounds.fill,
+          backgroundColor: colors.backgrounds.appBackground,
         },
       ]}>
       {children}
