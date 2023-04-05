@@ -37,7 +37,7 @@ const AppTabBar: React.FC<AppTabBarProps> = props => {
     <ApplyShadow
       backgroundColor={colors.dark}
       shadowOpacity={0.1}
-      shadowRadius={5}>
+      shadowRadius={8}>
       <View style={styles.container}>
         <View style={styles.linksWrapper}>
           {state.routes.map((route: any, index: number) => {

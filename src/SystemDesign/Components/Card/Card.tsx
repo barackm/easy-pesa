@@ -33,9 +33,9 @@ const Card: React.FC<CardProps> = props => {
     <AnimatedButton disabled={!onPress} onPress={() => onPress && onPress()}>
       <View style={styles.mainContainer}>
         <ApplyShadow
-          backgroundColor={colors.white}
-          shadowOpacity={0.055}
-          shadowRadius={15}>
+          backgroundColor={colors.dark}
+          shadowOpacity={0.05}
+          shadowRadius={10}>
           <View style={styles.container}>{children}</View>
         </ApplyShadow>
       </View>

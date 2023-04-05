@@ -3,6 +3,7 @@ import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import { AppTabBarRoute } from './AppNavigator';
 import Text from '@/SystemDesign/Components/Text/Index';
 import { colors, metrics } from '@/styles';
+import AnimatedButton from '@/Components/AnimatedButton/AnimatedButton';
 
 interface TabBarItemProps {
   onPress: () => void;
@@ -19,16 +20,20 @@ const TabBarItem: React.FC<TabBarItemProps> = props => {
   return (
     <View style={styles.tabBarItemContainer}>
       <TouchableWithoutFeedback onPress={onPress} style={styles.container}>
-        <View style={styles.iconContainer}>
-          {isFocused
-            ? activeIcon({
-                color: colors.dark,
-                size: metrics.moderateScale(20),
-              })
-            : icon({
-                color: colors.red,
-                size: metrics.moderateScale(20),
-              })}
+        <View>
+          <AnimatedButton>
+            <View style={styles.iconContainer}>
+              {isFocused
+                ? activeIcon({
+                    color: colors.dark,
+                    size: metrics.moderateScale(20),
+                  })
+                : icon({
+                    color: colors.red,
+                    size: metrics.moderateScale(20),
+                  })}
+            </View>
+          </AnimatedButton>
         </View>
       </TouchableWithoutFeedback>
     </View>
@@ -43,15 +48,14 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.red,
   },
   tabBarItemContainer: {
     flex: 1,
   },
   iconContainer: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
   },
   text: {
     color: colors.appleBlue,

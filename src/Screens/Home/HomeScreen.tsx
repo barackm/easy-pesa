@@ -64,8 +64,7 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
     },
     {
       title: 'Language',
-      subTitle:
-        'Change language of the app to your preferred language, if not available, you can help us translate it',
+      subTitle: '',
       leftIconData: {
         render: ({ color, size }: any) => (
           <MaterialIcons name="language" size={size} color={color} />
@@ -116,6 +115,9 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
           bounces={false}
           keyExtractor={(item, index) => item.title + index}
         />
+      </Card>
+      <Card>
+        <Text variant={TextVariant.subheadingBold}>Send assets</Text>
       </Card>
     </Screen>
   );
