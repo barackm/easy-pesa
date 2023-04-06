@@ -27,7 +27,7 @@ const ProfileScreen: React.FC = () => {
         />
         <TextInput
           placeholder="Enter Message"
-          label="Password"
+          label="Message"
           numberOfLines={10}
           multiline
           error="Error"

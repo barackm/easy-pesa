@@ -74,7 +74,9 @@ const TextInput: React.FC<TextInput> = props => {
       borderWidth: 1,
       minHeight: metrics.moderateScale(35),
       height: rest.multiline ? metrics.moderateScale(100) : 'auto',
-      borderRadius: metrics.moderateScale(20),
+      borderRadius: rest.multiline
+        ? metrics.moderateScale(15)
+        : metrics.moderateScale(20),
       paddingHorizontal: metrics.moderateScale(10),
       flexDirection: 'row',
       alignItems: 'center',
