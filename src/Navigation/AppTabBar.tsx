@@ -1,5 +1,5 @@
+import React from 'react';
 import { colors, metrics } from '@/styles';
-import { useTheme } from '@/theme/ThemeContext';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StyleSheet, View } from 'react-native';
 import TabBarItem from './TabBarItem';
@@ -7,7 +7,7 @@ import ApplyShadow from '@/Components/ApplyShadow/Index';
 
 type RootStackParamList = {
   Home: undefined;
-  Settings1: undefined;
+  Reports: undefined;
   Settings2: undefined;
   Settings3: undefined;
   Settings4: undefined;
@@ -24,14 +24,7 @@ interface AppTabBarProps {
 }
 
 const AppTabBar: React.FC<AppTabBarProps> = props => {
-  const {
-    state,
-    descriptors,
-    navigation,
-    onTabPress,
-    options: routesList,
-  } = props;
-  const { colors } = useTheme();
+  const { state, descriptors, onTabPress, options: routesList } = props;
 
   return (
     <ApplyShadow

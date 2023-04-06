@@ -1,12 +1,15 @@
+import React from 'react';
 import { IconSvgProps } from '@/entities/icon.interface';
-import { colors } from '@/styles';
+import { colors, metrics } from '@/styles';
 import { SvgXml } from 'react-native-svg';
 
 const ChartIcon: React.FC<IconSvgProps> = props => {
   const { color = colors.black, size = 20, isFocused } = props;
 
+  const width = isFocused ? size + metrics.moderateScale(3) : size;
+
   const svgMarkup = `
-    <svg width=${size} height=${size} viewBox="0 0 20 20" fill='none' xmlns="http://www.w3.org/2000/svg">
+    <svg width=${width} height=${width} viewBox="0 0 20 20" fill='none' xmlns="http://www.w3.org/2000/svg">
         ${
           isFocused
             ? `
@@ -17,10 +20,6 @@ const ChartIcon: React.FC<IconSvgProps> = props => {
         }
     </svg>
   `;
-
-  //   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-
-  // </svg>
 
   return <SvgXml xml={svgMarkup} />;
 };
