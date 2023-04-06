@@ -6,7 +6,7 @@ import ErrorIcon from '@/Components/Icons/ErrorIcon';
 import { useTheme } from '@/theme/ThemeContext';
 import Text from '../Text/Index';
 import { TextVariant } from '@/hooks/styles/useTextStyles';
-import { metrics } from '@/styles';
+import { font, metrics } from '@/styles';
 import Animated, {
   useAnimatedStyle,
   withTiming,
@@ -28,9 +28,17 @@ const TextInput: React.FC<TextInput> = props => {
   const { errors, setFieldTouched, handleChange, touched }: any = formik || {};
   const [isFocused, setIsFocused] = React.useState(false);
 
+  const isErrorAvailable =
+    error ||
+    (errors && touched && touched[name as string] && errors[name as string]);
+
   const { colors } = useTheme();
 
-  const borderColor = isFocused ? colors.blueGreyDark : colors.cardBackdrop;
+  const borderColor = isErrorAvailable
+    ? colors.red
+    : isFocused
+    ? colors.blueGreyDark
+    : colors.cardBackdrop;
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -45,7 +53,9 @@ const TextInput: React.FC<TextInput> = props => {
       width: '100%',
       marginVertical: metrics.moderateScale(5),
     },
-    labelWrapper: {},
+    labelWrapper: {
+      marginBottom: metrics.moderateScale(5),
+    },
     inputWrapper: {
       borderWidth: 1,
       height: metrics.moderateScale(35),
@@ -59,7 +69,13 @@ const TextInput: React.FC<TextInput> = props => {
       flex: 1,
     },
     endIconWrapper: {},
-    errorWrapper: {},
+    errorWrapper: {
+      flexDirection: 'row',
+    },
+    textInput: {
+      fontSize: font.size.smedium,
+      color: colors.black,
+    },
   });
 
   return (
@@ -94,7 +110,8 @@ const TextInput: React.FC<TextInput> = props => {
             onFocus={() => {
               setIsFocused(true);
             }}
-            placeholderTextColor={colors.blueGreyDark60}
+            style={styles.textInput}
+            placeholderTextColor={colors.darkGrey}
             {...rest}
           />
         </View>
@@ -106,8 +123,10 @@ const TextInput: React.FC<TextInput> = props => {
       </Animated.View>
       {((errors && touched[name as string]) || error) && (
         <View style={styles.errorWrapper}>
-          <ErrorIcon color={colors.red} scale={0.8} />
-          <Text>{error || errors[name as string]}</Text>
+          <ErrorIcon color={colors.red} scale={0.6} />
+          <Text variant={TextVariant.smallMedium} color={colors.red}>
+            {error || errors[name as string]}
+          </Text>
         </View>
       )}
     </View>

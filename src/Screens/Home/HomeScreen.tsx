@@ -118,8 +118,16 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
         />
       </Card>
       <Card>
-        <TextInput placeholder="Enter email" />
-        <TextInput placeholder="Enter email" />
+        <TextInput
+          placeholder="Enter email"
+          autoCapitalize="none"
+          label="Email"
+        />
+        <TextInput
+          placeholder="Enter email"
+          label="Password"
+          error="Should have at least a special character"
+        />
       </Card>
     </Screen>
   );
