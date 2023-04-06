@@ -13,6 +13,7 @@ import Card from '@/SystemDesign/Components/Card/Card';
 import Text from '@/SystemDesign/Components/Text/Index';
 import { TextVariant } from '@/hooks/styles/useTextStyles';
 import List from '@/SystemDesign/Components/List/List';
+import TextInput from '@/SystemDesign/Components/TextInput/TextInput';
 
 interface HomeScreenProps {}
 
@@ -117,7 +118,8 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
         />
       </Card>
       <Card>
-        <Text variant={TextVariant.subheadingBold}>Send assets</Text>
+        <TextInput placeholder="Enter email" />
+        <TextInput placeholder="Enter email" />
       </Card>
     </Screen>
   );

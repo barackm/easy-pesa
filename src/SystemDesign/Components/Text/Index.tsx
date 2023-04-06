@@ -7,8 +7,8 @@ import {
   TextProps as RNTextProps,
 } from 'react-native';
 
-export interface TextProps extends RNTextProps {
-  children: React.ReactNode;
+export interface TextProps extends Omit<RNTextProps & any, 'style'> {
+  children: string | React.ReactNode | undefined;
   variant?: TextVariant;
   color?: string;
   uppercase?: boolean;
@@ -16,7 +16,7 @@ export interface TextProps extends RNTextProps {
 }
 
 const Text: React.FC<TextProps> = props => {
-  const { children, style, variant, color, uppercase, capitalize } = props;
+  const { children, style, variant, color, uppercase } = props;
   const defaultStyles = useTextStyles();
   const currentStyles =
     defaultStyles[(variant as TextVariant) || TextVariant.body];
@@ -42,7 +42,7 @@ const Text: React.FC<TextProps> = props => {
         styles.uppercase,
         style,
       ]}>
-      {children}
+      {children as string}
     </RNText>
   );
 };

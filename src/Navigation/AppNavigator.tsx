@@ -67,21 +67,19 @@ const AppNavigators = [
   },
 ];
 
-const AppNavigator: React.FC<Props> = ({ navigation }) => {
-  const handleTabPress = (routeName: any) => {
-    navigation?.navigate(routeName);
-  };
+const renderTabBar = (props: any) => (
+  <AppTabBar
+    options={AppNavigators}
+    state={props.state}
+    descriptors={props.descriptors}
+    navigation={props.navigation}
+  />
+);
 
+const AppNavigator: React.FC<Props> = () => {
   return (
     <Tab.Navigator
-      tabBar={(props: any) => (
-        <AppTabBar
-          {...props}
-          options={AppNavigators}
-          navigation={navigation}
-          onTabPress={handleTabPress}
-        />
-      )}
+      tabBar={renderTabBar}
       screenOptions={{
         headerShown: false,
       }}>

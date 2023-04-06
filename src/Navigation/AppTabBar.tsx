@@ -18,13 +18,12 @@ type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList>;
 interface AppTabBarProps {
   state: any;
   descriptors: any;
-  navigation: ProfileScreenNavigationProp;
-  onTabPress: (routeName: string) => void;
   options: any[];
+  navigation: ProfileScreenNavigationProp;
 }
 
 const AppTabBar: React.FC<AppTabBarProps> = props => {
-  const { state, descriptors, onTabPress, options: routesList } = props;
+  const { state, descriptors, options: routesList, navigation } = props;
 
   return (
     <ApplyShadow
@@ -46,7 +45,7 @@ const AppTabBar: React.FC<AppTabBarProps> = props => {
 
             const onPress = () => {
               if (!isFocused) {
-                onTabPress(route.name);
+                navigation.navigate(route.name);
               }
             };
 
