@@ -29,7 +29,9 @@ const Text: React.FC<TextProps> = props => {
         ? font.letterSpacing.zero
         : font.letterSpacing.zero,
     },
-    container: {},
+    container: {
+      fontFamily: font.family.SFProRounded,
+    },
   });
   return (
     <RNText

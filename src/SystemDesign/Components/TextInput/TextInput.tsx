@@ -72,11 +72,13 @@ const TextInput: React.FC<TextInput> = props => {
     },
     inputWrapper: {
       borderWidth: 1,
-      height: metrics.moderateScale(35),
+      minHeight: metrics.moderateScale(35),
+      height: rest.multiline ? metrics.moderateScale(100) : 'auto',
       borderRadius: metrics.moderateScale(20),
       paddingHorizontal: metrics.moderateScale(10),
       flexDirection: 'row',
       alignItems: 'center',
+      paddingTop: rest.multiline ? metrics.moderateScale(5) : 0,
     },
     startIconWrapper: {
       marginRight: metrics.moderateScale(5),
@@ -90,14 +92,18 @@ const TextInput: React.FC<TextInput> = props => {
     errorWrapper: {
       flexDirection: 'row',
       width: '100%',
+      alignItems: 'flex-start',
     },
     textInput: {
       fontSize: font.size.smedium,
       color: colors.black,
+      fontFamily: font.family.SFProRounded,
+      flex: 1,
     },
     error: {
       flex: 1,
       lineHeight: metrics.moderateScale(15),
+      paddingTop: metrics.moderateScale(2),
     },
     endIconButton: {
       paddingLeft: metrics.moderateScale(2),

@@ -13,9 +13,6 @@ import Card from '@/SystemDesign/Components/Card/Card';
 import Text from '@/SystemDesign/Components/Text/Index';
 import { TextVariant } from '@/hooks/styles/useTextStyles';
 import List from '@/SystemDesign/Components/List/List';
-import TextInput from '@/SystemDesign/Components/TextInput/TextInput';
-import UserIcon from '@/Components/Icons/UserIcon';
-import LockIcon from '@/Components/Icons/LockIcon';
 
 interface HomeScreenProps {}
 
@@ -117,24 +114,6 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
           data={list}
           bounces={false}
           keyExtractor={(item, index) => item.title + index}
-        />
-      </Card>
-      <Card>
-        <TextInput
-          placeholder="Enter Email"
-          autoCapitalize="none"
-          label="Email"
-          startIcon={({ color, scale }) => (
-            <UserIcon color={color} scale={scale} />
-          )}
-        />
-        <TextInput
-          placeholder="Enter Password"
-          label="Password"
-          startIcon={({ color, scale }) => (
-            <LockIcon color={color} scale={scale} />
-          )}
-          secureTextEntry
         />
       </Card>
     </Screen>
