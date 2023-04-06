@@ -14,7 +14,7 @@ interface TabBarItemProps {
 
 const TabBarItem: React.FC<TabBarItemProps> = props => {
   const { onPress, isFocused, route, label } = props;
-  const { activeIcon, icon } = route;
+  const { icon } = route;
   const { colors } = useTheme();
 
   return (
@@ -23,15 +23,11 @@ const TabBarItem: React.FC<TabBarItemProps> = props => {
         <View>
           <AnimatedButton>
             <View style={styles.iconContainer}>
-              {isFocused
-                ? activeIcon({
-                    color: colors.dark,
-                    size: metrics.moderateScale(20),
-                  })
-                : icon({
-                    color: colors.red,
-                    size: metrics.moderateScale(20),
-                  })}
+              {icon({
+                color: colors.dark,
+                size: metrics.moderateScale(20),
+                isFocused,
+              })}
             </View>
           </AnimatedButton>
         </View>

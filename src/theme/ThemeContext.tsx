@@ -7,8 +7,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { useColorScheme } from 'react-native-appearance';
-import { Platform } from 'react-native';
+import { Platform, useColorScheme, Appearance } from 'react-native';
 import {
   Colors,
   darkModeThemeColors,
@@ -48,8 +47,8 @@ export const MainThemeProvider = (
   const [colorScheme, setColorScheme] = useState<ThemesType | null>(null);
 
   const ios = Platform.OS === 'ios';
-  const isSystemDarkModeIOS = useColorScheme();
-  const isSystemDarkModeAndroid = useColorScheme() === 'dark';
+  const isSystemDarkModeIOS = useColorScheme() === 'dark';
+  const isSystemDarkModeAndroid = Appearance.getColorScheme() === 'dark';
   const isSystemDarkMode = ios ? isSystemDarkModeIOS : isSystemDarkModeAndroid;
 
   const colorSchemeSystemAdjusted =

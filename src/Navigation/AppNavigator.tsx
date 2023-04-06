@@ -5,6 +5,11 @@ import HomeScreen from '@/Screens/Home/HomeScreen';
 import AppTabBar from './AppTabBar';
 import Text from '@/SystemDesign/Components/Text/Index';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import HomeIcon from '@/Components/Icons/HomeIcon';
+import UserIcon from '@/Components/Icons/UserIcon';
+import ProfileScreen from '@/Screens/Profile/ProfileScreen';
+import TrophyIcon from '@/Components/Icons/Trophycon';
+import ChartIcon from '@/Components/Icons/ChartIcon';
 
 type RootStackParamList = {
   Home: undefined;
@@ -25,7 +30,7 @@ type TabNavigatorParamList = {
   Settings1: undefined;
   Settings2: undefined;
   Settings3: undefined;
-  Settings4: undefined;
+  Profile: undefined;
 };
 
 const Tab = createBottomTabNavigator<TabNavigatorParamList>();
@@ -34,12 +39,12 @@ export interface AppTabBarRoute {
   name: string;
   component: React.FC<any>;
   icon: (props: IconProps) => React.ReactElement;
-  activeIcon: (props: IconProps) => React.ReactElement;
 }
 
 type IconProps = {
   color: string;
   size: number;
+  isFocused?: boolean;
 };
 
 const AppNavigator: React.FC<Props> = ({ navigation }) => {
@@ -47,57 +52,35 @@ const AppNavigator: React.FC<Props> = ({ navigation }) => {
     {
       name: 'Home',
       component: HomeScreen,
-      icon: ({ color, size }: IconProps) => (
-        <Ionicons size={size} color={color} name="md-home-outline" />
-      ),
-      activeIcon: ({ color, size }: IconProps) => (
-        <Ionicons name="home" size={size} color={color} />
+      icon: ({ color, size, isFocused }: IconProps) => (
+        <HomeIcon color={color} size={size} isFocused={isFocused} />
       ),
     },
     {
-      name: 'Settings1',
+      name: 'Reports',
       component: HomeScreen,
-      icon: ({ color, size }: IconProps) => (
-        <Ionicons size={size} color={color} name="md-home-outline" />
-      ),
-      activeIcon: ({ color, size }: IconProps) => (
-        <Ionicons name="home" size={size} color={color} />
+      icon: ({ color, size, isFocused }: IconProps) => (
+        <ChartIcon size={size} color={color} isFocused={isFocused} />
       ),
     },
     {
-      name: 'Settings2',
+      name: 'Goals',
       component: HomeScreen,
-      icon: ({ color, size }: IconProps) => (
-        <Ionicons size={size} color={color} name="md-home-outline" />
-      ),
-      activeIcon: ({ color, size }: IconProps) => (
-        <Ionicons name="home" size={size} color={color} />
+      icon: ({ color, size, isFocused }: IconProps) => (
+        <TrophyIcon size={size} color={color} isFocused={isFocused} />
       ),
     },
     {
-      name: 'Settings3',
-      component: HomeScreen,
-      icon: ({ color, size }: IconProps) => (
-        <Ionicons size={size} color={color} name="md-home-outline" />
-      ),
-      activeIcon: ({ color, size }: IconProps) => (
-        <Ionicons name="home" size={size} color={color} />
-      ),
-    },
-    {
-      name: 'Settings4',
-      component: HomeScreen,
-      icon: ({ color, size }: IconProps) => (
-        <Ionicons size={size} color={color} name="md-home-outline" />
-      ),
-      activeIcon: ({ color, size }: IconProps) => (
-        <Ionicons name="home" size={size} color={color} />
+      name: 'Profile',
+      component: ProfileScreen,
+      icon: ({ color, size, isFocused }: IconProps) => (
+        <UserIcon color={color} size={size} isFocused={isFocused} />
       ),
     },
   ];
 
   const handleTabPress = (routeName: any) => {
-    // navigation.navigate(routeName);
+    navigation.navigate(routeName);
   };
 
   return (
