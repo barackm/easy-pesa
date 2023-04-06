@@ -4,7 +4,7 @@ import { colors, metrics } from '@/styles';
 import { SvgXml } from 'react-native-svg';
 
 const ChartIcon: React.FC<IconSvgProps> = props => {
-  const { color = colors.black, size = 20, isFocused } = props;
+  const { color = colors.black, size = 20, isFocused, scale } = props;
 
   const width = isFocused ? size + metrics.moderateScale(3) : size;
 
@@ -21,7 +21,14 @@ const ChartIcon: React.FC<IconSvgProps> = props => {
     </svg>
   `;
 
-  return <SvgXml xml={svgMarkup} />;
+  return (
+    <SvgXml
+      xml={svgMarkup}
+      style={{
+        transform: [{ scale: scale || 1 }],
+      }}
+    />
+  );
 };
 
 export default ChartIcon;

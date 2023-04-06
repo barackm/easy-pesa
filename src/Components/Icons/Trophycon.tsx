@@ -8,6 +8,7 @@ const TrophyIcon: React.FC<IconSvgProps> = props => {
     color = colors.black,
     size = metrics.moderateScale(20),
     isFocused,
+    scale,
   } = props;
 
   const svgMarkup = `
@@ -25,7 +26,14 @@ const TrophyIcon: React.FC<IconSvgProps> = props => {
     </svg>
   `;
 
-  return <SvgXml xml={svgMarkup} />;
+  return (
+    <SvgXml
+      xml={svgMarkup}
+      style={{
+        transform: [{ scale: scale || 1 }],
+      }}
+    />
+  );
 };
 
 export default TrophyIcon;

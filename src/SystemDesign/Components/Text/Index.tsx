@@ -13,6 +13,7 @@ export interface TextProps extends Omit<RNTextProps & any, 'style'> {
   color?: string;
   uppercase?: boolean;
   capitalize?: boolean;
+  style?: any;
 }
 
 const Text: React.FC<TextProps> = props => {

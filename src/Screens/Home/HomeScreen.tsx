@@ -14,6 +14,8 @@ import Text from '@/SystemDesign/Components/Text/Index';
 import { TextVariant } from '@/hooks/styles/useTextStyles';
 import List from '@/SystemDesign/Components/List/List';
 import TextInput from '@/SystemDesign/Components/TextInput/TextInput';
+import UserIcon from '@/Components/Icons/UserIcon';
+import LockIcon from '@/Components/Icons/LockIcon';
 
 interface HomeScreenProps {}
 
@@ -119,14 +121,20 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
       </Card>
       <Card>
         <TextInput
-          placeholder="Enter email"
+          placeholder="Enter Email"
           autoCapitalize="none"
           label="Email"
+          startIcon={({ color, scale }) => (
+            <UserIcon color={color} scale={scale} />
+          )}
         />
         <TextInput
-          placeholder="Enter email"
+          placeholder="Enter Password"
           label="Password"
-          error="Should have at least a special character"
+          startIcon={({ color, scale }) => (
+            <LockIcon color={color} scale={scale} />
+          )}
+          secureTextEntry
         />
       </Card>
     </Screen>

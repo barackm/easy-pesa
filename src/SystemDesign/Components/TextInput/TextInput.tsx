@@ -11,22 +11,36 @@ import Animated, {
   useAnimatedStyle,
   withTiming,
 } from 'react-native-reanimated';
+import { IconSvgProps } from '@/entities/icon.interface';
+import EyeIcon from '@/Components/Icons/EyeIcon';
+import AnimatedButton from '@/Components/AnimatedButton/AnimatedButton';
 
+interface IconProps extends IconSvgProps {}
 interface TextInput extends TextInputProps {
-  startIcon?: ({ color, size }: any) => React.ReactNode;
-  endIcon?: ({ color, size }: any) => React.ReactNode;
+  startIcon?: ({ color, size, scale }: IconProps) => React.ReactNode;
+  endIcon?: ({ color, size, scale }: IconProps) => React.ReactNode;
   label?: string;
   error?: string;
   onTextChange?: (text: string) => void;
   name?: string;
+  secureTextEntry?: boolean;
 }
 
 const TextInput: React.FC<TextInput> = props => {
-  const { onTextChange, startIcon, endIcon, label, name, error, ...rest } =
-    props;
+  const {
+    onTextChange,
+    startIcon,
+    endIcon,
+    label,
+    name,
+    secureTextEntry,
+    error,
+    ...rest
+  } = props;
   const formik = useContext<FormikProps<any>>(FormikContext);
   const { errors, setFieldTouched, handleChange, touched }: any = formik || {};
   const [isFocused, setIsFocused] = React.useState(false);
+  const [isPasswordShown, setIsPasswordShown] = React.useState(false);
 
   const isErrorAvailable =
     error ||
@@ -60,21 +74,34 @@ const TextInput: React.FC<TextInput> = props => {
       borderWidth: 1,
       height: metrics.moderateScale(35),
       borderRadius: metrics.moderateScale(20),
-      paddingHorizontal: metrics.moderateScale(12),
+      paddingHorizontal: metrics.moderateScale(10),
       flexDirection: 'row',
       alignItems: 'center',
     },
-    startIconWrapper: {},
+    startIconWrapper: {
+      marginRight: metrics.moderateScale(5),
+    },
     inputContainer: {
       flex: 1,
     },
-    endIconWrapper: {},
+    endIconWrapper: {
+      marginLeft: metrics.moderateScale(5),
+    },
     errorWrapper: {
       flexDirection: 'row',
+      width: '100%',
     },
     textInput: {
       fontSize: font.size.smedium,
       color: colors.black,
+    },
+    error: {
+      flex: 1,
+      lineHeight: metrics.moderateScale(15),
+    },
+    endIconButton: {
+      paddingLeft: metrics.moderateScale(2),
+      height: metrics.moderateScale(30),
     },
   });
 
@@ -88,7 +115,11 @@ const TextInput: React.FC<TextInput> = props => {
       <Animated.View style={[styles.inputWrapper, animatedStyle]}>
         {startIcon && (
           <View style={styles.startIconWrapper}>
-            {startIcon({ color: 'red', size: 20 })}
+            {startIcon({
+              color: colors.blueGreyDark,
+              size: metrics.moderateScale(10),
+              scale: 0.8,
+            })}
           </View>
         )}
         <View style={styles.inputContainer}>
@@ -107,6 +138,7 @@ const TextInput: React.FC<TextInput> = props => {
                 return;
               }
             }}
+            secureTextEntry={secureTextEntry && !isPasswordShown}
             onFocus={() => {
               setIsFocused(true);
             }}
@@ -115,16 +147,36 @@ const TextInput: React.FC<TextInput> = props => {
             {...rest}
           />
         </View>
-        {endIcon && (
+        {(endIcon || secureTextEntry) && (
           <View style={styles.endIconWrapper}>
-            {endIcon({ color: 'red', size: 20 })}
+            {secureTextEntry ? (
+              <AnimatedButton
+                onPress={() => setIsPasswordShown(!isPasswordShown)}
+                style={styles.endIconButton}>
+                <EyeIcon
+                  scale={0.7}
+                  isOff={isPasswordShown}
+                  color={colors.blueGreyDark}
+                />
+              </AnimatedButton>
+            ) : (
+              endIcon &&
+              endIcon({
+                color: colors.blueGreyDark,
+                size: metrics.moderateScale(10),
+                scale: 0.6,
+              })
+            )}
           </View>
         )}
       </Animated.View>
       {((errors && touched[name as string]) || error) && (
         <View style={styles.errorWrapper}>
           <ErrorIcon color={colors.red} scale={0.6} />
-          <Text variant={TextVariant.smallMedium} color={colors.red}>
+          <Text
+            variant={TextVariant.smallMedium}
+            color={colors.red}
+            style={styles.error}>
             {error || errors[name as string]}
           </Text>
         </View>

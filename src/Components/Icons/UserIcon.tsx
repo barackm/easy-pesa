@@ -4,7 +4,7 @@ import { colors } from '@/styles';
 import { SvgXml } from 'react-native-svg';
 
 const UserIcon: React.FC<IconSvgProps> = props => {
-  const { color = colors.black, size = 20, isFocused } = props;
+  const { color = colors.black, size = 20, isFocused, scale } = props;
 
   const svgMarkup = `
   <svg width=${size} height=${size} viewBox="0 0 18 20" fill=${
@@ -15,7 +15,14 @@ const UserIcon: React.FC<IconSvgProps> = props => {
   </svg>
   `;
 
-  return <SvgXml xml={svgMarkup} />;
+  return (
+    <SvgXml
+      xml={svgMarkup}
+      style={{
+        transform: [{ scale: scale || 1 }],
+      }}
+    />
+  );
 };
 
 export default UserIcon;
