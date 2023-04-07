@@ -6,18 +6,21 @@ import {
   NavigationContainerRef,
 } from '@react-navigation/native';
 import AppNavigator from '@/Navigation/AppNavigator';
+import { Portal } from '@/SystemDesign/Components/Portal/Portal';
 
 const App: React.FC = () => {
   const navigationRef = React.useRef<NavigationContainerRef<any>>(null);
 
   return (
-    <MainThemeProvider>
-      <AppWrapper>
-        <NavigationContainer ref={navigationRef}>
-          <AppNavigator navigation={navigationRef.current as any} />
-        </NavigationContainer>
-      </AppWrapper>
-    </MainThemeProvider>
+    <Portal.Host>
+      <MainThemeProvider>
+        <AppWrapper>
+          <NavigationContainer ref={navigationRef}>
+            <AppNavigator navigation={navigationRef.current as any} />
+          </NavigationContainer>
+        </AppWrapper>
+      </MainThemeProvider>
+    </Portal.Host>
   );
 };
 
