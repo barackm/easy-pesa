@@ -170,7 +170,6 @@ const getColorsByTheme = (isDarkMode?: boolean) => {
       card: globalColors.white,
       cardBackdrop: globalColors.offwhite,
       swap: globalColors.swapPurple,
-      // darken the white background for the app
       appBackground: chroma(globalColors.white).darken(0.2).hex(),
     },
   };
@@ -234,7 +233,7 @@ const getColorsByTheme = (isDarkMode?: boolean) => {
     const dark = textColors?.dark ?? base.black;
     const light = textColors?.light ?? base.white;
     if (targetColor === 'transparent') {
-      return dark; // Return default dark color
+      return dark;
     }
 
     return isColorLight(targetColor) ? dark : light;

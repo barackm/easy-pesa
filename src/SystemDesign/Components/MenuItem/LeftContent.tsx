@@ -3,7 +3,7 @@ import { metrics } from '@/styles';
 import { useTheme } from '@/theme/ThemeContext';
 import { StyleSheet, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import ApplyShadow from '@/Components/ApplyShadow/Index';
+import ApplyShadow from '@/Components/ApplyShadow/ApplyShadow';
 import ConditionalWrap from 'conditional-wrap';
 
 interface LeftContentProps {

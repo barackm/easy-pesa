@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 import React from 'react';
-import ApplyShadow from '@/Components/ApplyShadow/Index';
+import ApplyShadow from '@/Components/ApplyShadow/ApplyShadow';
 import { useTheme } from '@/theme/ThemeContext';
 import { metrics } from '@/styles';
 import AnimatedButton from '@/Components/AnimatedButton/AnimatedButton';

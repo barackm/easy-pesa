@@ -1,5 +1,10 @@
-import { TextVariant, useTextStyles } from '@/hooks/styles/useTextStyles';
 import { font } from '@/styles';
+import {
+  FontLetterSpacing,
+  FontLineHeight,
+  FontSize,
+  FontWeight,
+} from '@/styles/fonts';
 import React from 'react';
 import {
   StyleSheet,
@@ -8,19 +13,28 @@ import {
 } from 'react-native';
 
 export interface TextProps extends Omit<RNTextProps & any, 'style'> {
-  children: string | React.ReactNode | undefined;
-  variant?: TextVariant;
+  children: React.ReactNode | undefined;
   color?: string;
   uppercase?: boolean;
   capitalize?: boolean;
   style?: any;
+  size?: FontSize;
+  weight?: FontWeight;
+  spacing?: FontLetterSpacing;
+  lineHeight?: FontLineHeight;
 }
 
 const Text: React.FC<TextProps> = props => {
-  const { children, style, variant, color, uppercase } = props;
-  const defaultStyles = useTextStyles();
-  const currentStyles =
-    defaultStyles[(variant as TextVariant) || TextVariant.body];
+  const {
+    children,
+    style,
+    color,
+    uppercase,
+    size,
+    weight,
+    lineHeight,
+    spacing,
+  } = props;
 
   const styles = StyleSheet.create({
     uppercase: {
@@ -31,6 +45,10 @@ const Text: React.FC<TextProps> = props => {
     },
     container: {
       fontFamily: font.family.SFProRounded,
+      fontSize: font.size[size || 'bmedium'],
+      fontWeight: font.weight[weight || 'regular'],
+      letterSpacing: font.letterSpacing[spacing || 'zero'],
+      lineHeight: font.lineHeight[lineHeight || 'normal'],
     },
   });
   return (
@@ -38,7 +56,6 @@ const Text: React.FC<TextProps> = props => {
       {...props}
       style={[
         styles.container,
-        currentStyles,
         {
           color,
         },

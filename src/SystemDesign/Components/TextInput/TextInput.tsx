@@ -4,8 +4,7 @@ import { TextInputProps } from 'react-native';
 import { FormikContext, FormikProps } from 'formik';
 import ErrorIcon from '@/Components/Icons/ErrorIcon';
 import { useTheme } from '@/theme/ThemeContext';
-import Text from '../Text/Index';
-import { TextVariant } from '@/hooks/styles/useTextStyles';
+import Text from '../Text/Text';
 import { font, metrics } from '@/styles';
 import Animated, {
   useAnimatedStyle,
@@ -117,7 +116,7 @@ const TextInput: React.FC<TextInput> = props => {
     <View style={[styles.container]}>
       {label && (
         <View style={styles.labelWrapper}>
-          <Text variant={TextVariant.body}>{label}</Text>
+          <Text size="bmedium">{label}</Text>
         </View>
       )}
       <Animated.View style={[styles.inputWrapper, animatedStyle]}>
@@ -181,10 +180,7 @@ const TextInput: React.FC<TextInput> = props => {
       {((errors && touched[name as string]) || error) && (
         <View style={styles.errorWrapper}>
           <ErrorIcon color={colors.red} scale={0.6} />
-          <Text
-            variant={TextVariant.smallMedium}
-            color={colors.red}
-            style={styles.error}>
+          <Text size="tiny" color={colors.red} style={styles.error}>
             {error || errors[name as string]}
           </Text>
         </View>

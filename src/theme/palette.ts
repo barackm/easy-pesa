@@ -403,3 +403,16 @@ export const shadowColors = selectForegroundColors(
   'yellow',
 );
 export type ShadowColor = (typeof shadowColors)[number];
+
+export const separatorColors = selectForegroundColors(
+  'separator',
+  'separatorSecondary',
+  'separatorTertiary',
+  'divider20',
+  'divider40',
+  'divider60',
+  'divider80',
+  'divider100',
+);
+
+export type SeparatorColor = (typeof separatorColors)[number];

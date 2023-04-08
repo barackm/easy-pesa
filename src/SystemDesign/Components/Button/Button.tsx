@@ -1,8 +1,7 @@
 import AnimatedButton from '@/Components/AnimatedButton/AnimatedButton';
-import ApplyShadow from '@/Components/ApplyShadow/Index';
+import ApplyShadow from '@/Components/ApplyShadow/ApplyShadow';
 import { useButtonStyles } from '@/hooks/styles/useButtonStyles';
-import { TextVariant } from '@/hooks/styles/useTextStyles';
-import Text from '@/SystemDesign/Components/Text/Index';
+import Text from '@/SystemDesign/Components/Text/Text';
 import { useTheme } from '@/theme/ThemeContext';
 import React from 'react';
 import {
@@ -99,8 +98,9 @@ const Button: React.FC<ButtonProps> = props => {
             {!isIconBtn ? (
               <Text
                 numberOfLines={1}
-                variant={TextVariant.bodyMedium}
-                style={styles.buttonText}>
+                size={getTextAndIconSize().fontSize}
+                style={styles.buttonText}
+                weight={getTextAndIconSize().textWeight}>
                 {children && typeof children !== 'function' ? children : ''}
               </Text>
             ) : (

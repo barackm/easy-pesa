@@ -1,28 +1,44 @@
+import { Space, space } from '@/layout/space';
 import React from 'react';
 import { View, StyleSheet, ViewStyle } from 'react-native';
 
 interface StackProps {
-  space?: number;
+  space?: Space | keyof typeof space;
   children: React.ReactNode;
   style?: ViewStyle;
 }
 
-const Stack: React.FC<StackProps> = ({ space = 0, children, style = {} }) => {
-  const marginVertical = space / -2;
+const Stack: React.FC<StackProps> = ({
+  space: _space = '1',
+  children,
+  style = {},
+}) => {
+  const spacing = typeof _space === 'string' ? space[Number(_space)] : _space;
+  const childArray = React.Children.toArray(children);
 
-  const containerStyle = {
-    marginVertical,
-  };
+  const childrenWithSpacing = childArray.reduce<React.ReactNode[]>(
+    (acc, child, index) => {
+      if (index === 0) {
+        return [child];
+      }
 
-  return (
-    <View style={[styles.container, containerStyle, style]}>{children}</View>
+      return [
+        ...acc,
+        <View
+          key={`space-${index}`}
+          style={{ height: spacing, width: spacing }}
+        />,
+        child,
+      ];
+    },
+    [],
   );
+
+  return <View style={[styles.container, style]}>{childrenWithSpacing}</View>;
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: {},
 });
 
 export default Stack;

@@ -1,154 +1,103 @@
-import Button from '@/SystemDesign/Components/Button/Index';
-import { colors, metrics } from '@/styles';
+import Button from '@/SystemDesign/Components/Button/Button';
+import { colors } from '@/styles';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
 
 import Feather from 'react-native-vector-icons/Feather';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import Screen from '@/Components/Screen/Index';
-import Card from '@/SystemDesign/Components/Card/Card';
-import Text from '@/SystemDesign/Components/Text/Index';
-import { TextVariant } from '@/hooks/styles/useTextStyles';
+import Text from '@/SystemDesign/Components/Text/Text';
+import Box from '@/SystemDesign/Components/Box/Box';
+import Stack from '@/SystemDesign/Components/Stack/Stack';
+import Inline from '@/SystemDesign/Components/Inline/Inline';
 import List from '@/SystemDesign/Components/List/List';
+import MenuItem from '@/SystemDesign/Components/MenuItem/MenuItem';
 
 interface HomeScreenProps {}
 
 const HomeScreen: React.FC<HomeScreenProps> = () => {
   const list = [
     {
-      title: 'Backup',
-      leftIconData: {
-        render: ({ color, size }: any) => (
-          <MaterialIcons name="refresh" size={size} color={color} />
-        ),
-        bgColor: colors.red,
-      },
-      actions: {
-        onClick: () => {},
-      },
+      id: 1,
+      titleComponent: <MenuItem.Title text="Receive assets" />,
+      labelComponent: '',
+      size: 50,
+      hasRightChevron: false,
+      hasRightSwitch: false,
+      leftComponent: null,
+      rightComponent: null,
+      isSelected: false,
     },
     {
-      title: 'Security',
-      leftIconData: {
-        render: ({ color, size }: any) => (
-          <MaterialCommunityIcons
-            name="shield-key-outline"
-            size={size}
-            color={color}
-          />
-        ),
-        onClick: () => {},
-        bgColor: colors.appleBlue,
-      },
-    },
-    {
-      title: 'Currency',
-      leftIconData: {
-        render: ({ color, size }: any) => (
-          <MaterialIcons name="attach-money" size={size} color={color} />
-        ),
-        bgColor: colors.green,
-      },
-    },
-    {
-      title: 'Notifications',
-      leftIconData: {
-        render: ({ color, size }: any) => (
-          <MaterialIcons name="notifications" size={size} color={color} />
-        ),
-        bgColor: colors.yellow,
-      },
-    },
-    {
-      title: 'Language',
-      subTitle: '',
-      leftIconData: {
-        render: ({ color, size }: any) => (
-          <MaterialIcons name="language" size={size} color={color} />
-        ),
-        bgColor: colors.pink,
-      },
+      id: 2,
+      titleComponent: <MenuItem.Title text="Receive assets" />,
+      labelComponent: '',
+      size: 50,
+      hasRightChevron: false,
+      hasRightSwitch: false,
+      leftComponent: null,
+      rightComponent: null,
+      isSelected: false,
     },
   ];
 
   return (
     <Screen>
-      <Card>
-        <View style={styles.cardHeader}>
-          <View style={styles.cardTextContainer}>
-            <Text variant={TextVariant.headingBold}>Receive assets</Text>
-            <Text capitalize style={styles.cardTextBody}>
-              You can also long press your address above to copy it
-            </Text>
-          </View>
-          <View style={styles.qrCodeContainer}>
-            <Button
-              variant="default"
-              isIconBtn
-              color={colors.backgrounds.red}
-              size="small">
-              {({ size, color }) => (
-                <Ionicons name="md-qr-code-outline" size={size} color={color} />
-              )}
-            </Button>
-          </View>
-        </View>
-        <View style={styles.cardFooter}>
-          <Button
-            variant="text"
-            color={colors.backgrounds.red}
-            size="small"
-            showShadow={false}
-            startIcon={({ size, color }) => (
-              <Feather name="copy" size={size} color={color} />
-            )}>
-            Copy Address
-          </Button>
-        </View>
-      </Card>
-      <Card isNotAList={false}>
-        <List
-          data={list}
-          bounces={false}
-          keyExtractor={(item, index) => item.title + index}
-        />
-      </Card>
+      <Stack space="20">
+        <Box
+          background={colors.white}
+          paddingHorizontal="8"
+          paddingVertical="8"
+          borderRadius={20}
+          width="full">
+          <Stack space="24">
+            <Inline alignVertical="top" space="20">
+              <Box flex={1}>
+                <Stack space="5">
+                  <Text size="larger" weight="bold">
+                    Receive assets
+                  </Text>
+                  <Text size="smedium">
+                    You can also long press your address above to copy it
+                  </Text>
+                </Stack>
+              </Box>
+              <Box>
+                <Button
+                  variant="default"
+                  isIconBtn
+                  color={colors.backgrounds.red}
+                  size="small">
+                  {({ size, color }) => (
+                    <Ionicons
+                      name="md-qr-code-outline"
+                      size={size}
+                      color={color}
+                    />
+                  )}
+                </Button>
+              </Box>
+            </Inline>
+            <Box>
+              <Button
+                variant="text"
+                color={colors.backgrounds.red}
+                size="small"
+                showShadow={false}
+                startIcon={({ size, color }) => (
+                  <Feather name="copy" size={size} color={color} />
+                )}>
+                Copy Address
+              </Button>
+            </Box>
+          </Stack>
+        </Box>
+        <Box background={colors.white} borderRadius={20} width="full">
+          <List data={list} />
+        </Box>
+      </Stack>
     </Screen>
   );
 };
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({
-  cardMainContainer: {
-    width: '100%',
-  },
-  cardContainer: {
-    width: '100%',
-    backgroundColor: colors.white,
-    padding: metrics.moderateScale(14),
-    borderRadius: metrics.moderateScale(14),
-  },
-  cardHeader: {
-    flexDirection: 'row',
-    marginBottom: metrics.moderateScale(10),
-  },
-  cardTextContainer: {
-    flex: 3,
-  },
-  qrCodeContainer: {},
-  cardFooter: {},
-  cardText: {
-    fontWeight: 'bold',
-    fontSize: metrics.moderateScale(20),
-    marginBottom: metrics.moderateScale(5),
-    fontFamily: 'SF Pro Rounded',
-  },
-  cardTextBody: {
-    width: '60%',
-    marginTop: metrics.moderateScale(5),
-  },
-});

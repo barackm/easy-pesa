@@ -1,3 +1,4 @@
+import { Space, space } from '@/layout/space';
 import React, { ReactNode } from 'react';
 import { View, StyleSheet, ViewStyle } from 'react-native';
 
@@ -7,7 +8,7 @@ type AlignVertical = 'top' | 'bottom' | 'center';
 type InlineProps = {
   alignHorizontal?: AlignHorizontal;
   alignVertical?: AlignVertical;
-  space?: number;
+  space?: Space | keyof typeof space;
   style?: ViewStyle;
   children: ReactNode;
 };
@@ -15,7 +16,7 @@ type InlineProps = {
 const Inline: React.FC<InlineProps> = ({
   alignHorizontal = 'left',
   alignVertical = 'center',
-  space = 0,
+  space: _space = '1',
   style,
   children,
 }) => {
@@ -33,17 +34,33 @@ const Inline: React.FC<InlineProps> = ({
       ? 'flex-end'
       : 'center';
 
-  const spaceStyle = space ? { marginHorizontal: space / 2 } : {};
+  const spacing = typeof _space === 'string' ? space[_space] : _space;
+  const spaceStyle = { marginHorizontal: Number(spacing) / 2 };
+  const childArray = React.Children.toArray(children);
+
+  const childrenWithSpacing = childArray.reduce<ReactNode[]>(
+    (acc, child, index) => {
+      if (index === 0) {
+        return [child];
+      }
+
+      return [
+        ...acc,
+        <View key={`space-${index}`} style={[spaceStyle]} />,
+        child,
+      ];
+    },
+    [],
+  );
 
   return (
     <View
       style={[
         styles.inlineContainer,
         { justifyContent, flexDirection, alignItems },
-        spaceStyle,
         style,
       ]}>
-      {children}
+      {childrenWithSpacing}
     </View>
   );
 };

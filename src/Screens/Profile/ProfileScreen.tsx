@@ -4,11 +4,9 @@ import UserIcon from '@/Components/Icons/UserIcon';
 import Screen from '@/Components/Screen/Index';
 import Card from '@/SystemDesign/Components/Card/Card';
 import TextInput from '@/SystemDesign/Components/TextInput/TextInput';
-import { TouchableOpacity, View } from 'react-native';
-import Text from '@/SystemDesign/Components/Text/Index';
-import { TextVariant } from '@/hooks/styles/useTextStyles';
+import { View } from 'react-native';
+import Text from '@/SystemDesign/Components/Text/Text';
 import Popover from '@/SystemDesign/Components/Popover/Popover';
-import Button from '@/SystemDesign/Components/Button/Index';
 
 const ProfileScreen: React.FC = () => {
   const viewRef = React.useRef<any>(null);
@@ -16,30 +14,12 @@ const ProfileScreen: React.FC = () => {
   return (
     <>
       <Screen>
-        <View
-          style={{
-            justifyContent: 'flex-start',
-            width: '100%',
-            paddingVertical: 20,
-            flexDirection: 'row',
-          }}>
-          <Button>Okay</Button>
-          <TouchableOpacity
-            ref={viewRef}
-            onPress={() => setShowPopover(true)}
-            style={{
-              width: '40%',
-              height: 20,
-            }}>
-            <Text variant={TextVariant.headingMedium}>Open Popover</Text>
-          </TouchableOpacity>
-        </View>
         <Popover
           target={viewRef}
           onClose={() => setShowPopover(false)}
           open={showPopover}>
           <View>
-            <Text variant={TextVariant.headingMedium}>Popover</Text>
+            <Text size="bmedium">Popover</Text>
           </View>
         </Popover>
         <Card>

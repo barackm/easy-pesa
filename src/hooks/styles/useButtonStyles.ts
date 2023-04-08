@@ -1,5 +1,6 @@
 import { metrics } from '@/styles';
 import { Colors } from '@/styles/colors';
+import { FontSize, FontWeight } from '@/styles/fonts';
 import { StyleSheet } from 'react-native';
 
 interface ButtonStylesProps {
@@ -89,26 +90,36 @@ export const useButtonStyles = (props: ButtonStylesProps) => {
   };
 
   const getTextAndIconSize = () => {
-    const cases: any = {
+    const cases: {
+      [key: string]: () => {
+        fontSize: FontSize;
+        iconSize: number;
+        loadingIndicatorSize: number;
+        textWeight: FontWeight;
+      };
+    } = {
       small: () => {
         return {
-          fontSize: metrics.moderateVerticalScale(12),
+          fontSize: 'smedium',
           iconSize: metrics.moderateVerticalScale(15),
           loadingIndicatorSize: 18,
+          textWeight: 'medium',
         };
       },
       medium: () => {
         return {
-          fontSize: metrics.moderateVerticalScale(14),
+          fontSize: 'bmedium',
           iconSize: metrics.moderateVerticalScale(18),
           loadingIndicatorSize: 22,
+          textWeight: 'medium',
         };
       },
       large: () => {
         return {
-          fontSize: metrics.moderateVerticalScale(18),
+          fontSize: 'lmedium',
           iconSize: metrics.moderateVerticalScale(22),
           loadingIndicatorSize: 26,
+          textWeight: 'medium',
         };
       },
     };

@@ -1,7 +1,6 @@
-import { useTheme } from '@/theme/ThemeContext';
+import React from 'react';
 import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import { AppTabBarRoute } from './AppNavigator';
-import Text from '@/SystemDesign/Components/Text/Index';
 import { colors, metrics } from '@/styles';
 import AnimatedButton from '@/Components/AnimatedButton/AnimatedButton';
 
@@ -13,9 +12,8 @@ interface TabBarItemProps {
 }
 
 const TabBarItem: React.FC<TabBarItemProps> = props => {
-  const { onPress, isFocused, route, label } = props;
+  const { onPress, isFocused, route } = props;
   const { icon } = route;
-  const { colors } = useTheme();
 
   return (
     <View style={styles.tabBarItemContainer}>

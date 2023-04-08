@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList, FlatListProps } from 'react-native';
-import ListItem from '../ListItem/ListItem';
 import ItemSeparator from './ItemSeparator';
+import MenuItem from '../MenuItem/MenuItem';
 
 interface ListProps<T> extends Omit<FlatListProps<T>, 'renderItem'> {
   data: T[];
@@ -18,13 +18,7 @@ const List = <T extends any>(props: ListProps<T>) => {
         renderItem ? (
           renderItem({ item })
         ) : (
-          <ListItem
-            title={item.title}
-            leftIconData={item.leftIconData}
-            renderLeftContent={item.renderLeftContent}
-            renderRightContent={item.renderRightContent}
-            subTitle={item.subTitle}
-          />
+          <MenuItem titleComponent={<MenuItem.Title text="There we go" />} />
         )
       }
       ItemSeparatorComponent={() => <ItemSeparator />}

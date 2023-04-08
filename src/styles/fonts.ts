@@ -135,4 +135,11 @@ interface Font {
     black: any;
   };
 }
+
+export type FontSize = keyof Font['size'];
+export type FontWeight = keyof Font['weight'];
+export type FontFamily = keyof Font['family'];
+export type FontLetterSpacing = keyof Font['letterSpacing'];
+export type FontLineHeight = keyof Font['lineHeight'];
+
 export default font;
