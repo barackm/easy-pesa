@@ -15,14 +15,7 @@ const List = <T extends any>(props: ListProps<T>) => {
       data={data}
       {...rest}
       renderItem={({ item }: any) =>
-        renderItem ? (
-          renderItem({ item })
-        ) : (
-          <MenuItem
-            {...item}
-            titleComponent={<MenuItem.Title text="There we go" />}
-          />
-        )
+        renderItem ? renderItem({ item }) : <MenuItem {...item} />
       }
       ItemSeparatorComponent={() => <ItemSeparator />}
     />

@@ -7,16 +7,40 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import Screen from '@/Components/Screen/Index';
 import { Box, Inline, List, MenuItem, Stack, Text } from '@/SystemDesign/Index';
+import { MenuItemProps } from '@/SystemDesign/Components/MenuItem/MenuItem';
 
 interface HomeScreenProps {}
 
 const HomeScreen: React.FC<HomeScreenProps> = () => {
-  const list = [
+  const [switched, setSwitched] = React.useState(false);
+
+  const list: MenuItemProps[] = [
+    {
+      id: 4,
+      titleComponent: <MenuItem.Title text="Notifications" />,
+      labelComponent: (
+        <MenuItem.SubTitle text="Please turn on or off notifications for this app, so you can receive notifications" />
+      ),
+      size: 40,
+      hasRightChevron: false,
+      hasRightSwitch: true,
+      leftComponent: null,
+      rightComponent: null,
+      isSelected: false,
+      onSwitchChange: () => {
+        console.log('switched');
+        setSwitched(!switched);
+      },
+      switchValue: switched,
+      onPress() {
+        console.log('pressed');
+      },
+    },
     {
       id: 1,
       titleComponent: <MenuItem.Title text="Receive assets" />,
       labelComponent: '',
-      size: 50,
+      size: 40,
       hasRightChevron: true,
       hasRightSwitch: false,
       leftComponent: null,
@@ -27,12 +51,24 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
       id: 2,
       titleComponent: <MenuItem.Title text="Receive assets" />,
       labelComponent: '',
-      size: 50,
+      size: 40,
       hasRightChevron: false,
       hasRightSwitch: false,
       leftComponent: null,
       rightComponent: null,
       isSelected: true,
+    },
+    {
+      id: 3,
+      titleComponent: <MenuItem.Title text="Receive assets" />,
+      labelComponent: '',
+      size: 40,
+      hasRightChevron: false,
+      hasRightSwitch: false,
+      leftComponent: null,
+      rightComponent: null,
+      isSelected: false,
+      hasRightArrow: true,
     },
   ];
 
@@ -43,7 +79,7 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
           background={colors.white}
           paddingHorizontal="8"
           paddingVertical="8"
-          borderRadius={20}
+          borderRadius={12}
           shadow={colors.dark}
           width="full">
           <Stack space="24">
@@ -79,6 +115,7 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
                 variant="text"
                 color={colors.backgrounds.red}
                 size="small"
+                autoWidth
                 showShadow={false}
                 startIcon={({ size, color }) => (
                   <Feather name="copy" size={size} color={color} />
@@ -91,9 +128,9 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
         <Box
           background={colors.white}
           shadow={colors.dark}
-          borderRadius={20}
+          borderRadius={12}
           width="full">
-          <List data={list} />
+          <List scrollEnabled={false} data={list} />
         </Box>
       </Stack>
     </Screen>

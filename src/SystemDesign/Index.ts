@@ -11,6 +11,7 @@ import MenuItem from './Components/MenuItem/MenuItem';
 import Popover from './Components/Popover/Popover';
 import Separator from './Components/Separator/Separator';
 import Stack from './Components/Stack/Stack';
+import Switch from './Components/Switch/Switch';
 import Text from './Components/Text/Text';
 import TextInput from './Components/TextInput/TextInput';
 
@@ -30,4 +31,5 @@ export {
   TextInput,
   AnimatedButton,
   ApplyShadow,
+  Switch,
 };

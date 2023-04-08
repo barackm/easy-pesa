@@ -7,7 +7,7 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated';
 
-interface Props {
+interface Props extends React.ComponentProps<typeof TouchableWithoutFeedback> {
   onPress?: () => void;
   onLongPress?: () => void;
   style?: ViewStyle;
