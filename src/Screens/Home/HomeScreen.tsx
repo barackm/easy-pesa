@@ -6,12 +6,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import Screen from '@/Components/Screen/Index';
-import Text from '@/SystemDesign/Components/Text/Text';
-import Box from '@/SystemDesign/Components/Box/Box';
-import Stack from '@/SystemDesign/Components/Stack/Stack';
-import Inline from '@/SystemDesign/Components/Inline/Inline';
-import List from '@/SystemDesign/Components/List/List';
-import MenuItem from '@/SystemDesign/Components/MenuItem/MenuItem';
+import { Box, Inline, List, MenuItem, Stack, Text } from '@/SystemDesign/Index';
 
 interface HomeScreenProps {}
 
@@ -49,6 +44,7 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
           paddingHorizontal="8"
           paddingVertical="8"
           borderRadius={20}
+          shadow={colors.dark}
           width="full">
           <Stack space="24">
             <Inline alignVertical="top" space="20">
@@ -92,7 +88,11 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
             </Box>
           </Stack>
         </Box>
-        <Box background={colors.white} borderRadius={20} width="full">
+        <Box
+          background={colors.white}
+          shadow={colors.dark}
+          borderRadius={20}
+          width="full">
           <List data={list} />
         </Box>
       </Stack>

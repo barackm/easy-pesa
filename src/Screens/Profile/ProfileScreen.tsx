@@ -2,11 +2,9 @@ import React from 'react';
 import LockIcon from '@/Components/Icons/LockIcon';
 import UserIcon from '@/Components/Icons/UserIcon';
 import Screen from '@/Components/Screen/Index';
-import Card from '@/SystemDesign/Components/Card/Card';
-import TextInput from '@/SystemDesign/Components/TextInput/TextInput';
 import { View } from 'react-native';
-import Text from '@/SystemDesign/Components/Text/Text';
-import Popover from '@/SystemDesign/Components/Popover/Popover';
+import { colors } from '@/styles';
+import { Box, Popover, Text, TextInput } from '@/SystemDesign/Index';
 
 const ProfileScreen: React.FC = () => {
   const viewRef = React.useRef<any>(null);
@@ -22,7 +20,11 @@ const ProfileScreen: React.FC = () => {
             <Text size="bmedium">Popover</Text>
           </View>
         </Popover>
-        <Card>
+        <Box
+          background={colors.white}
+          padding="10"
+          borderRadius={20}
+          shadow={colors.dark}>
           <TextInput
             placeholder="Enter Email"
             autoCapitalize="none"
@@ -44,9 +46,8 @@ const ProfileScreen: React.FC = () => {
             label="Message"
             numberOfLines={10}
             multiline
-            error="Error"
           />
-        </Card>
+        </Box>
       </Screen>
     </>
   );

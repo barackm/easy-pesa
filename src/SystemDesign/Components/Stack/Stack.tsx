@@ -3,7 +3,7 @@ import React from 'react';
 import { View, StyleSheet, ViewStyle } from 'react-native';
 
 interface StackProps {
-  space?: Space | keyof typeof space;
+  space?: Space;
   children: React.ReactNode;
   style?: ViewStyle;
 }
@@ -13,7 +13,8 @@ const Stack: React.FC<StackProps> = ({
   children,
   style = {},
 }) => {
-  const spacing = typeof _space === 'string' ? space[Number(_space)] : _space;
+  // @ts-ignore
+  const spacing = space[_space as Space];
   const childArray = React.Children.toArray(children);
 
   const childrenWithSpacing = childArray.reduce<React.ReactNode[]>(

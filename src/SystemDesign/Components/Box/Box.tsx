@@ -75,6 +75,8 @@ export type BoxProps = {
   flex?: number;
   as?: React.ElementType;
   style?: StyleProp<any>;
+  shadowOpacity?: number;
+  shadowRadius?: number;
 } & (
   | {
       borderBottomRadius?: number;
@@ -145,6 +147,9 @@ const Box: React.FC<BoxProps> = forwardRef((props, ref) => {
     top: topProp,
     width: widthProp,
     flex,
+    shadowOpacity = 0.02,
+    shadowRadius = 5,
+    shadow,
     ...restProps
   } = props;
 
@@ -277,7 +282,9 @@ const Box: React.FC<BoxProps> = forwardRef((props, ref) => {
       condition={!!background}
       wrap={_children => (
         <ApplyShadow
-          backgroundColor={background || colors.backgrounds.cardBackdrop}>
+          backgroundColor={shadow || colors.backgrounds.cardBackdrop}
+          shadowOpacity={shadowOpacity}
+          shadowRadius={shadowRadius}>
           <Component
             ref={ref}
             style={[
