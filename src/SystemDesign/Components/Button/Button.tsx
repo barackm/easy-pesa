@@ -1,5 +1,3 @@
-import AnimatedButton from '@/Components/AnimatedButton/AnimatedButton';
-import ApplyShadow from '@/Components/ApplyShadow/ApplyShadow';
 import { useButtonStyles } from '@/hooks/styles/useButtonStyles';
 import Text from '@/SystemDesign/Components/Text/Text';
 import { useTheme } from '@/theme/ThemeContext';
@@ -10,6 +8,8 @@ import {
   View,
 } from 'react-native';
 import ActivityIndicator from '../ActivityIndicator/ActivityIndicator';
+import ApplyShadow from '../ApplyShadow/ApplyShadow';
+import AnimatedButton from '../AnimatedButton/AnimatedButton';
 
 type ButtonChildren =
   | React.ReactNode

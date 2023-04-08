@@ -12,7 +12,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { IconSvgProps } from '@/entities/icon.interface';
 import EyeIcon from '@/Components/Icons/EyeIcon';
-import AnimatedButton from '@/Components/AnimatedButton/AnimatedButton';
+import AnimatedButton from '@/SystemDesign/Components/AnimatedButton/AnimatedButton';
 
 interface IconProps extends IconSvgProps {}
 interface TextInput extends TextInputProps {

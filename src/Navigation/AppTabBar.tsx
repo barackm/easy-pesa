@@ -3,7 +3,7 @@ import { colors, metrics } from '@/styles';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StyleSheet, View } from 'react-native';
 import TabBarItem from './TabBarItem';
-import ApplyShadow from '@/Components/ApplyShadow/ApplyShadow';
+import { ApplyShadow } from '@/SystemDesign/Index';
 
 type RootStackParamList = {
   Home: undefined;

@@ -1,4 +1,6 @@
 import ActivityIndicator from './Components/ActivityIndicator/ActivityIndicator';
+import AnimatedButton from './Components/AnimatedButton/AnimatedButton';
+import ApplyShadow from './Components/ApplyShadow/ApplyShadow';
 import Box from './Components/Box/Box';
 import Button from './Components/Button/Button';
 import Card from './Components/Card/Card';
@@ -26,4 +28,6 @@ export {
   Stack,
   Text,
   TextInput,
+  AnimatedButton,
+  ApplyShadow,
 };

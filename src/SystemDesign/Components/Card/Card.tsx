@@ -1,9 +1,9 @@
 import { StyleSheet, View } from 'react-native';
 import React from 'react';
-import ApplyShadow from '@/Components/ApplyShadow/ApplyShadow';
 import { useTheme } from '@/theme/ThemeContext';
 import { metrics } from '@/styles';
-import AnimatedButton from '@/Components/AnimatedButton/AnimatedButton';
+import AnimatedButton from '@/SystemDesign/Components/AnimatedButton/AnimatedButton';
+import ApplyShadow from '../ApplyShadow/ApplyShadow';
 
 interface CardProps {
   onPress?: () => void;

@@ -18,7 +18,10 @@ const List = <T extends any>(props: ListProps<T>) => {
         renderItem ? (
           renderItem({ item })
         ) : (
-          <MenuItem titleComponent={<MenuItem.Title text="There we go" />} />
+          <MenuItem
+            {...item}
+            titleComponent={<MenuItem.Title text="There we go" />}
+          />
         )
       }
       ItemSeparatorComponent={() => <ItemSeparator />}

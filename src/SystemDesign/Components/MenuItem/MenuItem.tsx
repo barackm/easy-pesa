@@ -2,10 +2,15 @@ import { StyleSheet, View } from 'react-native';
 import React from 'react';
 
 import Text, { TextProps } from '@/SystemDesign/Components/Text/Text';
-import AnimatedButton from '@/Components/AnimatedButton/AnimatedButton';
+import AnimatedButton from '@/SystemDesign/Components/AnimatedButton/AnimatedButton';
 import Stack from '../Stack/Stack';
 import Inline from '../Inline/Inline';
 import Box from '../Box/Box';
+import ChevronIcon from '@/Components/Icons/ChevronIcon';
+import { useTheme } from '@/theme/ThemeContext';
+import CheckIcon from '@/Components/Icons/CheckIcon';
+import { colors, metrics } from '@/styles';
+import ApplyShadow from '../ApplyShadow/ApplyShadow';
 
 interface MenuItemProps {
   titleComponent?: React.ReactNode;
@@ -33,12 +38,12 @@ const MenuItem: MenuItemComponent = props => {
     isSelected,
     size,
   } = props;
-
+  const { colors } = useTheme();
   return (
     <AnimatedButton>
-      <Box width={{ custom: size || 50 }}>
-        <Inline>
-          <Box>
+      <Box height={{ custom: size || 50 }} width="full" justifyContent="center">
+        <Inline space="10">
+          <Box flex={1} paddingHorizontal="15">
             {leftComponent && <Box>{leftComponent}</Box>}
             <Box>
               <Stack>
@@ -47,14 +52,12 @@ const MenuItem: MenuItemComponent = props => {
               </Stack>
             </Box>
           </Box>
-          <Box>
+          <Box paddingHorizontal="15">
             <Inline>
               {rightComponent}
               {hasRightChevron && (
                 <Box>
-                  <Text size="smedium" color="textSecondary">
-                    {'>'}
-                  </Text>
+                  <ChevronIcon scale={0.7} color={colors.blueGreyDark60} />
                 </Box>
               )}
               {hasRightSwitch && (
@@ -67,9 +70,11 @@ const MenuItem: MenuItemComponent = props => {
 
               {isSelected && (
                 <Box>
-                  <Text size="smedium" color="textSecondary">
-                    {'>'}
-                  </Text>
+                  <ApplyShadow backgroundColor={colors.appleBlue}>
+                    <View style={styles.checkIcon}>
+                      <CheckIcon color={colors.white} scale={0.6} />
+                    </View>
+                  </ApplyShadow>
                 </Box>
               )}
             </Inline>
@@ -86,6 +91,14 @@ const styles = StyleSheet.create({
   title: {},
   subTitle: {},
   subTitleText: {},
+  checkIcon: {
+    width: metrics.moderateScale(20),
+    height: metrics.moderateScale(20),
+    backgroundColor: colors.appleBlue,
+    borderRadius: metrics.moderateScale(10),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 interface TitleProps extends Omit<TextProps, 'children'> {

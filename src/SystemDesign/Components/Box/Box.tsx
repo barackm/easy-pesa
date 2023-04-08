@@ -10,9 +10,9 @@ import {
 import React, { ReactNode, forwardRef, useMemo } from 'react';
 import { View } from 'react-native';
 import ConditionalWrap from 'conditional-wrap';
-import ApplyShadow from '@/Components/ApplyShadow/ApplyShadow';
 import { colors } from '@/styles';
 import { StyleProp } from 'react-native';
+import ApplyShadow from '../ApplyShadow/ApplyShadow';
 
 export function resolveToken<TokenName extends string, TokenValue, CustomValue>(
   scale: Record<TokenName, TokenValue>,

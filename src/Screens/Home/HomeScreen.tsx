@@ -17,7 +17,7 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
       titleComponent: <MenuItem.Title text="Receive assets" />,
       labelComponent: '',
       size: 50,
-      hasRightChevron: false,
+      hasRightChevron: true,
       hasRightSwitch: false,
       leftComponent: null,
       rightComponent: null,
@@ -32,7 +32,7 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
       hasRightSwitch: false,
       leftComponent: null,
       rightComponent: null,
-      isSelected: false,
+      isSelected: true,
     },
   ];
 

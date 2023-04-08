@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import { AppTabBarRoute } from './AppNavigator';
 import { colors, metrics } from '@/styles';
-import AnimatedButton from '@/Components/AnimatedButton/AnimatedButton';
+import AnimatedButton from '@/SystemDesign/Components/AnimatedButton/AnimatedButton';
 
 interface TabBarItemProps {
   onPress: () => void;
