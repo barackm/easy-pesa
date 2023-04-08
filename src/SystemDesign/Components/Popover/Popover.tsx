@@ -1,12 +1,12 @@
-import React from 'react';
+import { metrics } from '@/styles';
+import { Portal } from '@gorhom/portal';
+import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, Dimensions, StyleSheet } from 'react-native';
 import Animated, {
-  Easing,
   useAnimatedStyle,
   useSharedValue,
-  withTiming,
+  withSpring,
 } from 'react-native-reanimated';
-import { Portal } from '../Portal/Portal';
 
 interface PopoverProps {
   open: boolean;
@@ -21,81 +21,63 @@ const Popover: React.FC<PopoverProps> = ({
   target,
   children,
 }) => {
-  const translateY = useSharedValue(0);
-  const [targetLayout, setTargetLayout] = React.useState({
+  const opacity = useSharedValue(0);
+  const [targetLayout, setTargetLayout] = useState({
     x: 0,
     y: 0,
     width: 0,
     height: 0,
   });
-
-  React.useEffect(() => {
+  const margin = metrics.moderateScale(15);
+  useEffect(() => {
     if (open) {
-      translateY.value = withTiming(-50, {
-        duration: 300,
-        easing: Easing.inOut(Easing.ease),
+      opacity.value = withSpring(1, {
+        damping: 20,
       });
-
       if (target.current) {
-        target.current.measure((x, y, width, height) => {
+        target.current.measureInWindow((x, y, width, height) => {
           setTargetLayout({ x, y, width, height });
         });
       }
     } else {
-      translateY.value = withTiming(0, {
-        duration: 300,
-        easing: Easing.inOut(Easing.ease),
+      opacity.value = withSpring(0, {
+        damping: 20,
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open]);
+  }, [open, target, opacity]);
 
-  const popoverWidth = 250;
+  const popoverWidth = metrics.moderateScale(250);
   const windowWidth = Dimensions.get('window').width;
-  let popoverX = targetLayout.x + targetLayout.width / 2 - popoverWidth / 2;
 
-  if (popoverX < 0) {
-    popoverX = 0;
-  } else if (popoverX + popoverWidth > windowWidth) {
-    popoverX = windowWidth - popoverWidth;
-  }
-
-  const overlayOpacityStyle = useAnimatedStyle(() => {
+  const popoverStyle = useAnimatedStyle(() => {
+    let _popoverX = targetLayout.x - margin;
+    if (_popoverX + popoverWidth > windowWidth - margin) {
+      _popoverX = windowWidth - popoverWidth - margin;
+    }
+    if (_popoverX < margin) {
+      _popoverX = margin;
+    }
     return {
-      opacity: withTiming(open ? 1 : 0, {
-        duration: 300,
-        easing: Easing.inOut(Easing.ease),
-      }),
+      // transform: [{ opacity: opacity.value }],
+      opacity: opacity.value,
+      position: 'absolute',
+      left: _popoverX,
+      top: targetLayout.y + targetLayout.height + 10,
+      width: popoverWidth,
+      height: 50,
+      backgroundColor: 'orange',
+      zIndex: 100,
     };
   });
 
   const styles = StyleSheet.create({
-    container: {
-      position: 'absolute',
-      left: popoverX,
-      top: targetLayout.y + targetLayout.height,
-      width: popoverWidth,
-      height: 50,
-      backgroundColor: 'orange',
-      transform: [{ translateY: translateY.value }],
-      zIndex: 100,
-    },
-
     overlay: {
       position: 'absolute',
       left: 0,
       top: 0,
       width: windowWidth,
       height: Dimensions.get('window').height,
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
       zIndex: 99,
-    },
-    mainContainer: {
-      position: 'absolute',
-      left: 0,
-      top: 0,
-      width: Dimensions.get('window').width,
-      height: Dimensions.get('window').height,
     },
     contentContainer: {},
     overlayTouchable: {
@@ -104,14 +86,21 @@ const Popover: React.FC<PopoverProps> = ({
   });
 
   return (
-    <Portal>
-      <Animated.View style={[styles.overlay, overlayOpacityStyle]}>
-        <TouchableOpacity onPress={onClose} style={styles.overlayTouchable} />
-      </Animated.View>
-      <Animated.View style={styles.container}>
-        <View style={styles.contentContainer}>{children}</View>
-      </Animated.View>
-    </Portal>
+    <>
+      {open && (
+        <Portal>
+          <Animated.View style={[styles.overlay]}>
+            <TouchableOpacity
+              onPress={onClose}
+              style={styles.overlayTouchable}
+            />
+          </Animated.View>
+          <Animated.View style={[popoverStyle]}>
+            <View style={styles.contentContainer}>{children}</View>
+          </Animated.View>
+        </Portal>
+      )}
+    </>
   );
 };
 

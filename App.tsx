@@ -6,13 +6,13 @@ import {
   NavigationContainerRef,
 } from '@react-navigation/native';
 import AppNavigator from '@/Navigation/AppNavigator';
-import { Portal } from '@/SystemDesign/Components/Portal/Portal';
+import { PortalProvider } from '@gorhom/portal';
 
 const App: React.FC = () => {
   const navigationRef = React.useRef<NavigationContainerRef<any>>(null);
 
   return (
-    <Portal.Host>
+    <PortalProvider>
       <MainThemeProvider>
         <AppWrapper>
           <NavigationContainer ref={navigationRef}>
@@ -20,7 +20,7 @@ const App: React.FC = () => {
           </NavigationContainer>
         </AppWrapper>
       </MainThemeProvider>
-    </Portal.Host>
+    </PortalProvider>
   );
 };
 
